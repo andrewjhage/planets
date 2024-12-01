@@ -10,58 +10,62 @@ const PlanetCards = () => {
 
     useEffect(() => {
         const fetchPlanets = async () => {
-            try {
-                const response = await axios.get(API_URL, {
-                    params: { 'filter[]': 'isPlanet,eq,true' }, // Only fetch planets
-                });
-                setPlanets(response.data.bodies); // Set the fetched planet data
-            } catch (err) {
-                console.error('API Error:', err.message);
-                setError('Error fetching data');
-            } finally {
-                setLoading(false);
-            }
-        };
+        try {
+            const response = await axios.get(API_URL, {
+            params: { 'filter[]': 'isPlanet,eq,true' }, // Only fetch planets
+        });
+        setPlanets(response.data.bodies); // Set the fetched planet data
+        } catch (err) {
+        console.error('API Error:', err.message);
+        setError('Error fetching data');
+        } finally {
+        setLoading(false);
+        }
+    };
 
-        fetchPlanets();
+    fetchPlanets();
     }, []);
 
     return (
-        <div>
-            <h1>Planets</h1>
-            {loading && <p>Loading...</p>}
-            {error && <p>{error}</p>}
-            {!loading && !error && planets.length > 0 ? (
-                <div
-                    style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-                        gap: '20px',
-                    }}
-                >
-                    {planets.map((planet, index) => (
-                        <div
-                            key={index}
-                            style={{
-                                border: '1px solid #ddd',
-                                borderRadius: '8px',
-                                padding: '16px',
-                                backgroundColor: '#f9f9f9',
-                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                            }}
-                        >
-                            <h2>{planet.englishName || planet.name}</h2>
-                            <p><strong>Mass:</strong> {planet.mass?.massValue || 'Unknown'} x10^{planet.mass?.massExponent || '0'} kg</p>
-                            <p><strong>Mean Radius:</strong> {planet.meanRadius || 'Unknown'} km</p>
-                            <p><strong>Orbital Period:</strong> {planet.sideralOrbit || 'Unknown'} days</p>
-                            <p><strong>Gravity:</strong> {planet.gravity || 'Unknown'} m/s²</p>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                !loading && !error && <p>No planets found.</p>
-            )}
+        <div className="p-6">
+        <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">Planets</h1>
+        {loading && <p className="text-center text-gray-600">Loading...</p>}
+        {error && <p className="text-center text-red-600">{error}</p>}
+        {!loading && !error && planets.length > 0 ? (
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {planets.map((planet, index) => (
+            <div
+                key={index}
+                className="border rounded-lg shadow-md bg-white p-4 hover:shadow-lg transition-shadow duration-300"
+            >
+                <h2 className="text-xl font-semibold text-gray-800 mb-2">{planet.englishName || planet.name}</h2>
+                <ul className="text-sm text-gray-600 space-y-1">
+                <li>
+                    <strong>Mass:</strong>{' '}
+                    {planet.mass?.massValue
+                    ? `${planet.mass.massValue} x10^${planet.mass.massExponent} kg`
+                    : 'Unknown'}
+                </li>
+                <li>
+                    <strong>Mean Radius:</strong>{' '}
+                    {planet.meanRadius ? `${planet.meanRadius} km` : 'Unknown'}
+                </li>
+                <li>
+                    <strong>Orbital Period:</strong>{' '}
+                    {planet.sideralOrbit ? `${planet.sideralOrbit} days` : 'Unknown'}
+                </li>
+                <li>
+                    <strong>Gravity:</strong>{' '}
+                    {planet.gravity ? `${planet.gravity} m/s²` : 'Unknown'}
+                </li>
+                </ul>
+            </div>
+            ))}
         </div>
+        ) : (
+        !loading && !error && <p className="text-center text-gray-600">No planets found.</p>
+        )}
+    </div>
     );
 };
 

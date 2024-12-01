@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
     return (
     <footer className="bg-gray-800 text-white text-center py-4">
-        <p>&copy; 2021 Andrew's Planetarium</p>
+        <p>&copy; 2021 Andrew's Planetarium. All rights reserved.</p>
         <p>
             The Greatest Planetarium in the World!{' '}
             <a href="https://twitter.com/andrewplanet" className="text-blue-400">
