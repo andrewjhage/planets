@@ -1,0 +1,35 @@
+Documentation:
+1. Content and components
+
+This project's content was centered around displaying information about planets in our solar system.
+I started by creating a separation of concerns by creating a components, data, and pages folder.
+Inside of the components folder I created a header that displays the name of the planetarium and
+displays a brief description of the planetarium. I then created a navigation bar that has links to
+home, about, and contact pages. It has a horizontal layout for desktop that turns into a dropdown
+layout on smaller screens. On the home page I created planet cards that display information
+about each planet. The data is fetched dynamically from an external API. Each card has hover effects
+for a better UI. The footer provides information at the bottom of the page with links to a Twitter
+and Instagram page. 
+
+2. Responsiveness
+
+I created breakpoints for small, medium, and large screen sizes. Cards and navigation bar will be 
+in a single-column layout for small screen sizes. Cards will be in a two-column layout with larger
+header text on medium screens. Cards will be in a multi-column grid with an expanded navigation bar
+for large screens.
+
+3. Hooks
+
+I used `useState` to manage the state of the planet cards. I had error messages show up if the cards
+did not display. I also used `useEffect` to fetch planet data from the external API. The API I used
+was https://api.le-systeme-solaire.net/rest/bodies. 
+
+
+4. Problems during development
+
+One problem I had was trying to fetch the data from the external API. Origionally, I was using an 
+API that required a private key. I was not able to fetch the data from this API because I was 
+unable to see how the data was structured. I eventually had to find an API that didn't require a key.
+Another problem that I had was getting the carousel data to populate my carousel. I realized during
+the debugging process that I was not importing the data properly and once I routed the file correctly
+it worked.
