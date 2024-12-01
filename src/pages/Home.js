@@ -1,10 +1,13 @@
 import '../App.css';
-import Header from '../components/Header';
+import Carousel from '../components/Carousel';
+import PlanetCards from '../components/PlanetCards';
+import carouselData from '../data/carouselData';
 
 function Home() {
         return (
         <div className="App">
-            <Header />
+            <Carousel items={carouselData}/>
+            <PlanetCards />
         </div>
     );
 }
