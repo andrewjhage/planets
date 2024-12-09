@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import carouselData from '../data/carouselData'; // Ensure the path is correct
+import carouselData from '../data/carouselData'; 
 
 const Carousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);

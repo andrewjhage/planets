@@ -31,7 +31,6 @@ const Layout = () => {
             </button>
         </div>
 
-        {/* Menu Links */}
         <div
             className={`${
                 isMenuOpen ? "block" : "hidden"
